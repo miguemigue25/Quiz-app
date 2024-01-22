@@ -11,6 +11,11 @@
     padding: 40px 50px;
 }
 
+.container h1{
+    display: flex;
+    align-self: center;
+}
+
 .container hr{
     height: 2px;
     border: none;
@@ -20,6 +25,8 @@
 .container h2{
     font-size: 27px;
     font-weight: 500;
+    display: flex;
+    align-self: center;
 }
 
 .container ul li{

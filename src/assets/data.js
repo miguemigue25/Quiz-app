@@ -1,9 +1,9 @@
 export const data = [
     {
         question: "Which device is required for the Internet connection?",
-        option1: "Index Page",
-        option2: "Homepage",
-        option3: "Sitemap",
+        option1: "Modem",
+        option2: "Router",
+        option3: "LAN Cable",
         option4: "Pen Drive",
         ans: 1,
     },
