@@ -1,8 +1,17 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Quiz.css";
 import { data } from "../../assets/data";
 
 const Quiz = () =>  {
+
+    const shuffleQuestions = (array) => {
+        const shuffledQuestions = [...array];
+        for (let i = shuffledQuestions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledQuestions[i], shuffledQuestions[j]] = [shuffledQuestions[j], shuffledQuestions[i]];
+        }
+        return shuffledQuestions;
+    };
 
     let [index, setIndex] = useState(0);
     let [question, setQuestion] = useState(data[index]);
@@ -17,6 +26,11 @@ const Quiz = () =>  {
 
     let optionArray = [Option1, Option2, Option3, Option4];
 
+    useEffect(() => {
+        const shuffledData = shuffleQuestions(data);
+        setQuestion(shuffledData[index]);
+    }, [index]);
+
     const checkAns = (e, ans) => {
         if (lock === false) {
             if (question.ans===ans) {
@@ -30,8 +44,7 @@ const Quiz = () =>  {
                 optionArray[question.ans-1].current.classList.add("correct");
             }
         }
-
-    }
+    };
 
     const calculatePercentage = () => {
         const percentage = (score / data.length) * 100;
@@ -52,9 +65,9 @@ const Quiz = () =>  {
                 option.current.classList.remove("wrong");
                 option.current.classList.remove("correct");
                 return null;
-            })
+            });
         }
-    }
+    };
 
     const reset = () => {
         setIndex(0);
@@ -62,7 +75,7 @@ const Quiz = () =>  {
         setScore(0);
         setLock(false);
         setResult(false);
-    }
+    };
 
     return (
         <div className="container">
